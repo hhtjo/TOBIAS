@@ -1,0 +1,41 @@
+{
+    "model_name_or_path": "facebook/bart-base",
+    "preprocessed_weights": "tau",
+    "text_column": "article",
+    "summary_column": "summary",
+    "topic_as_prompt": true,
+    "remove_commas_prompt": false,
+    "topic_prompt_column": "sentence",
+    "label_names": [
+        "topic_prompt", "weights"
+    ],
+    "num_train_epochs": 5,
+    "per_device_train_batch_size": 8,
+    "per_device_eval_batch_size": 8,
+    "add_bias": true,
+    "do_train": true,
+    "do_eval": true,
+    "do_predict": true,
+    "dataset_name": "dataset/NEWTS_with_tau",
+    "load_from_disk": true,
+    "max_source_length": 1024,
+    "max_target_length": 128,
+    "pad_to_max_length": true,
+    "overwrite_output_dir": true,
+    "predict_with_generate": true,
+    "num_beams": 1,
+    "num_beams_predict": [
+        2,
+        3,
+        4
+    ],
+    "generation_num_beams": 4,
+    "generation_max_length": 180,
+    "ignore_pad_token_for_loss": true,
+    "evaluation_strategy": "steps",
+    "report_to": "wandb",
+    "logging_steps": 1000,
+    "eval_steps": 1000,
+    "save_total_limit": 1,
+    "save_steps": 2000
+}
