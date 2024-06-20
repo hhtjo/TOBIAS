@@ -6,8 +6,8 @@ import torch
 from sklearn.cluster import DBSCAN
 
 
-df_train_raw = pd.read_csv("NEWTS_train_2400.csv")
-df_test_raw = pd.read_csv("NEWTS_test_600.csv")
+df_train_raw = pd.read_csv("NEWTS_train_2400.csv").drop(columns=["Unnamed: 0"])
+df_test_raw = pd.read_csv("NEWTS_test_600.csv").drop(columns=["Unnamed: 0"])
 
 
 def rename_2_columns(df, col_names):
@@ -27,11 +27,11 @@ def fill_na_columns(df, col_names):
 
 def unpivot_topics(df):
     df1 = pd.melt(df, id_vars=["AssignmentId", "docId", "article"])
-    rename_2_columns(df1, ["tid", "words", "phrases", "sentences", "summary"])
+    df1 = rename_2_columns(df1, ["tid", "words", "phrases", "sentences", "summary"])
     df1 = pd.concat(
         [df1, pd.pivot(df1, columns=["variable"], values=["value"])["value"]], axis=1
     )
-    fill_na_columns(df1, ["phrases", "sentences", "summary", "words"])
+    df1 = fill_na_columns(df1, ["phrases", "sentences", "summary", "words"])
     df1 = df1.dropna().drop(["variable", "value"], axis=1)
     return df1
 
@@ -76,6 +76,7 @@ def clean_prompt_outliers(example):
     example["new_words"] = new_words
     example["word_diff"] = set(example["words"].split(", ")) - set(decoded_new_words)
     return example
+
 
 dataset_cleaned = dataset_cleaned.map(clean_prompt_outliers)
 dataset_cleaned.save_to_disk("./dataset/newts-cleaned")

@@ -1,7 +1,7 @@
 import nltk
 import evaluate
 import numpy as np
-from topic_score import TopicScore
+from training_script.topic_score import TopicScore
 from gensim.models import LdaModel
 from gensim.corpora import Dictionary
 
@@ -9,8 +9,8 @@ rouge_metric = evaluate.load("rouge")
 bleu = evaluate.load("bleu")
 bertscore = evaluate.load("bertscore")
 
-lda = LdaModel.load("../../lda_model/250/lda.model")
-dictionary = Dictionary.load("../../lda_model/250/dictionary.dic")
+lda = LdaModel.load("./250/lda.model")
+dictionary = Dictionary.load("./250/dictionary.dic")
 topic_metric = TopicScore(lda, dictionary)
 
 def calculate_topic_score(preds, dataset, clean_chars=True):

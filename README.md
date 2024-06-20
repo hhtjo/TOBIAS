@@ -38,7 +38,9 @@ The training scripts are located in the `training_script` folder. The scripts ar
    wget https://raw.githubusercontent.com/ali-bahrainian/NEWTS/main/NEWTS_test_600.csv
    wget https://raw.githubusercontent.com/ali-bahrainian/NEWTS/main/NEWTS_train_2400.csv
    ```
-2. Preprocess the dataset:
+2. Download the LDA model from https://github.com/ali-bahrainian/NEWTS and unzip into `250/`
+
+3. Preprocess the dataset:
    ```bash
    python prepare_dataset.py
    ```
@@ -54,3 +56,11 @@ This step can take several hours to complete and requires a lot of memory.
 1. Run the jupyter notebook `conformer/create_bias_weights.ipynb` to create the bias weights for the CONFORMER* model.
    The notebook will create a new dataset with the bias weights for each token in the input.
    The dataset will be stored at `./dataset/NEWTS_with_tau` as a Huggingface Dataset.
+
+
+### Training TOBIAS 
+
+To run the training script:
+```bash
+python -m training_script.training_script_summary train_tobias_config.json
+```

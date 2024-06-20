@@ -1,6 +1,6 @@
 import torch
-from tobias_comparator import TobiasComparator
-from tobias_embedder import EmbedderInterface
+from .tobias_comparator import TobiasComparator
+from .tobias_embedder import EmbedderInterface
 
 
 class TobiasControlModule:

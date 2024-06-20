@@ -74,12 +74,12 @@ from transformers.utils import (
 )
 from transformers.utils.versions import require_version
 
-from arguments import DataTrainingArguments, ModelArguments, RunArguments
-from metrics import calculate_metrics
-from preprocess import preprocess_dataset, preprocess_dataset_old
-from model import get_model, get_steered_model
-from plot_heatmap import get_plotly_heatmap
-from plot_bias_weight import get_bias_scales, plot_bias_scales
+from training_script.arguments import DataTrainingArguments, ModelArguments, RunArguments
+from training_script.metrics import calculate_metrics
+from training_script.preprocess import preprocess_dataset
+from training_script.model import get_model
+from training_script.plot_heatmap import get_plotly_heatmap
+from training_script.plot_bias_weight import get_bias_scales, plot_bias_scales
 
 import wandb
 
